@@ -58,7 +58,7 @@ The easiest way to setup a service is to use the [FeathersJS Cli](https://docs.f
 
 ```js
 // Initializes the `unsplash-photos` service on path `/unsplash-photos`
-const { UnsplashPhotos } = require("feathers-unsplash");
+const { UnsplashPhotos } = require("@smarthost/feathers-unsplash");
 const hooks = require("./unsplash-photos.hooks");
 
 module.exports = function (app) {
@@ -111,6 +111,17 @@ The `get` method can be used in two ways:
 const imageData = await app.service("unsplash-photos").get(id);
 const randomImageData = await app.service("unsplash-photos").get("random");
 ```
+
+## All Services
+
+Below is a list of all exposed services and their implemented methods.
+All can be used like the example given above
+
+- UnsplashPhotos (find, get)
+- UnsplashCollections (find, get)
+- UnsplashCollectionPhotos (find)
+- UnsplashTopics (find, get)
+- UnsplashTopicPhotos (find)
 
 ## Help
 
