@@ -14,7 +14,7 @@ This is a fork and update of [marshallswain/feathers-unsplash](https://github.co
 
 ## Install
 
-```
+```shell
 npm install @smarthost/feathers-unsplash node-fetch unsplash-js
 
 yarn add @smarthost/feathers-unsplash node-fetch unsplash-js
@@ -24,9 +24,10 @@ Other packages needed may be: `tslib`, `@feathersjs/errors`
 
 This adapter requires `fetch` support, which means you'll need to provide it on the global scope. This means that somewhere in your app you need to use this code:
 
-```
-const fetch = require('node-fetch')
-global.fetch = fetch
+```js
+// preferably in the the index file
+const fetch = require("node-fetch");
+global.fetch = fetch;
 ```
 
 ## Setup API Access
@@ -37,19 +38,12 @@ First you'll need to setup Unsplash API access.
 2. Copy the `accessKey` into an environment variable.
 3. Setup the FeathersJS config
 
-```
+```json
 // default.json
 
 "unsplash": {
     "accessKey": "MYAPPNAME_UNSPLASH_ACCESS_KEY"
 }
-```
-
-```
-// somewhere high up in the application. (maybe the index file)
-
-const fetch = require("node-fetch");
-global.fetch = fetch;
 ```
 
 ## Setup a Service
