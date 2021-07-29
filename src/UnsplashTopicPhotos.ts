@@ -1,13 +1,13 @@
 import { createApi } from "unsplash-js";
 import { Params } from "@feathersjs/feathers";
-import { GeneralError, NotImplemented } from "@feathersjs/errors";
+import { GeneralError, NotImplemented, BadRequest } from "@feathersjs/errors";
 
 interface Options {
   accessKey?: string;
   headers?: HeadersInit;
 }
 
-export class UnsplashCollections {
+export class UnsplashTopicPhotos {
   model;
   options: Options;
 
@@ -27,19 +27,30 @@ export class UnsplashCollections {
     const { $limit, $skip } = params;
     const skip = $skip || 0;
     const limit = $limit || 10;
+    const query = params.query || {};
+    const { topicIdOrSlug, orderBy, orientation } = query;
+
+    if (!topicIdOrSlug) {
+      throw new BadRequest(
+        "Must provide collection id as a query parameter when requesting photos. eg ?id=3737"
+      );
+    }
 
     // Simulate per-page skip using feathers-style per-record skip.
     // This means skip accuracy is only every $limit number of records.
     const adjustedSkip = Math.floor(skip / limit) + 1;
 
-    return await this.model.collections
-      .list({
+    return await this.model.topics
+      .getPhotos({
         perPage: limit,
         page: adjustedSkip,
+        topicIdOrSlug,
+        orderBy,
+        orientation,
       })
       .then(({ type, response, errors, status }) => {
         if (type === "error") {
-          throw new GeneralError("UnsplashCollections error", {
+          throw new GeneralError("UnsplashTopics error", {
             errors,
             status,
             type,
@@ -54,41 +65,8 @@ export class UnsplashCollections {
       });
   }
 
-  fetchRelatedCollections(id: string): Promise<unknown> {
-    return this.model.collections
-      .getRelated({ collectionId: id })
-      .then(({ type, response }) => {
-        if (type === "error") {
-          return [];
-        }
-        return response;
-      });
-  }
-
-  async get(id: string, params: Params): Promise<unknown> {
-    params = params || {};
-    const query = params.query || {};
-    const { related } = query;
-
-    return this.model.collections
-      .get({ collectionId: id })
-      .then(async ({ type, errors, response, status }) => {
-        if (type === "error") {
-          throw new GeneralError("UnsplashCollections error", {
-            errors,
-            status,
-            type,
-          });
-        }
-
-        if (!related) {
-          return response;
-        }
-
-        const relatedCollections = await this.fetchRelatedCollections(id);
-
-        return { ...response, related: relatedCollections };
-      });
+  get(): void {
+    throw new NotImplemented();
   }
 
   create(): void {

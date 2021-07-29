@@ -17,7 +17,7 @@ export class UnsplashPhotos {
     const { accessKey, headers } = this.options;
     if (!accessKey) {
       throw new Error(
-        "You must provide an Unplash `accessKey` to any Unsplash service"
+        "You must provide an Unsplash `accessKey` to any Unsplash service"
       );
     }
     this.model = createApi({ accessKey, headers });
@@ -63,10 +63,10 @@ export class UnsplashPhotos {
           });
         }
         return {
-          data: response?.results || [],
           limit: response?.results?.length || 0,
           skip,
           total: response?.total || 0,
+          data: response?.results || [],
         };
       });
   }
