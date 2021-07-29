@@ -50,7 +50,7 @@ export class UnsplashTopicPhotos {
       })
       .then(({ type, response, errors, status }) => {
         if (type === "error") {
-          throw new GeneralError("UnsplashTopics error", {
+          throw new GeneralError("UnsplashTopicPhotos error", {
             errors,
             status,
             type,
