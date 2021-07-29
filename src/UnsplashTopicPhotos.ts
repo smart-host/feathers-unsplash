@@ -28,7 +28,7 @@ export class UnsplashTopicPhotos {
     const skip = $skip || 0;
     const limit = $limit || 10;
     const query = params.query || {};
-    const { topicIdOrSlug, orderBy, orientation } = query;
+    const { id: topicIdOrSlug, orderBy, orientation } = query;
 
     if (!topicIdOrSlug) {
       throw new BadRequest(

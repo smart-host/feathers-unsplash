@@ -29,13 +29,13 @@ export class UnsplashCollectionPhotos {
     const limit = $limit || 10;
     const { ...query } = params.query;
 
-    const { id, orderBy, orientation } = query;
+    const { id: collectionId, orderBy, orientation } = query;
 
     // Simulate per-page skip using feathers-style per-record skip.
     // This means skip accuracy is only every $limit number of records.
     const adjustedSkip = Math.floor(skip / limit) + 1;
 
-    if (!id) {
+    if (!collectionId) {
       throw new BadRequest(
         "Must provide collection id as a query parameter when requesting photos. eg ?id=3737"
       );
@@ -45,7 +45,7 @@ export class UnsplashCollectionPhotos {
       .getPhotos({
         perPage: limit,
         page: adjustedSkip,
-        collectionId: id,
+        collectionId,
         orderBy,
         orientation,
       })
