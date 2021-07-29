@@ -1,4 +1,4 @@
-# feathers-unsplash
+# @smarthost/feathers-unsplash
 
 > FeathersJS service adapter for querying the Unsplash API
 
@@ -116,6 +116,8 @@ All can be used like the example given above
 - UnsplashCollectionPhotos (find)
 - UnsplashTopics (find, get)
 - UnsplashTopicPhotos (find)
+
+> More documentation coming soon
 
 ## Help
 
