@@ -1,0 +1,46 @@
+{
+  "name": "@smarthost/feathers-unsplash",
+  "version": "0.0.0",
+  "description": "Feathersjs wrapper for querying the unsplash api",
+  "author": "Smart Host <it@smart-host.com>",
+  "repository": "https://github.com/smart-host/feathers-unsplash",
+  "license": "MIT",
+  "keywords": [
+    "typescript",
+    "boilerplate",
+    "esbuild"
+  ],
+  "main": "./dist/tsc/main.js",
+  "types": "./dist/tsc/main.d.ts",
+  "scripts": {
+    "lint": "eslint src/ --ext .js,.jsx,.ts,.tsx",
+    "test": "jest",
+    "clean": "rm -rf dist build package",
+    "ts-node": "ts-node",
+    "docs": "typedoc --entryPoints src/main.ts",
+    "build": "tsc -p tsconfig.json",
+    "build-all": "yarn clean && yarn build"
+  },
+  "peerDependencies": {
+    "@feathersjs/errors": ">= 4.5.11",
+    "@feathersjs/feathers": ">= 4.5.11",
+    "unsplash-js": "^7.0.15"
+  },
+  "devDependencies": {
+    "@feathersjs/errors": "^4.5.11",
+    "@feathersjs/feathers": "^4.5.11",
+    "@types/jest": "^26.0.24",
+    "@types/node": "^16.4.6",
+    "@typescript-eslint/eslint-plugin": "^4.28.5",
+    "@typescript-eslint/parser": "^4.28.5",
+    "esbuild": "^0.12.16",
+    "eslint": "^7.31.0",
+    "jest": "^27.0.6",
+    "node-fetch": "^2.6.1",
+    "ts-jest": "^27.0.4",
+    "ts-node": "^10.1.0",
+    "typedoc": "^0.21.4",
+    "typescript": "^4.3.5",
+    "unsplash-js": "^7.0.15"
+  }
+}
