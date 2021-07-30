@@ -1,18 +1,21 @@
 import { createApi } from "unsplash-js";
-import { Params } from "@feathersjs/feathers";
+import { Params, Application } from "@feathersjs/feathers";
 import { GeneralError, NotImplemented } from "@feathersjs/errors";
 
 interface Options {
   accessKey?: string;
   headers?: HeadersInit;
+  paginate?: { default?: number; max?: number };
 }
 
 export class UnsplashTopics {
   model;
   options: Options;
+  app: Application | undefined;
 
-  constructor(options: Options) {
+  constructor(options: Options, app?: Application) {
     this.options = options || {};
+    this.app = app;
 
     const { accessKey, headers } = this.options;
     if (!accessKey) {

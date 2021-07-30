@@ -39,6 +39,10 @@ This adapter requires `fetch` support, which means you'll need to provide it on 
 // preferably in the the index file
 const fetch = require("node-fetch");
 global.fetch = fetch;
+
+// typescript
+import fetch from "node-fetch";
+global.fetch = fetch as any; // trick for type imcompatibility for now
 ```
 
 ## Setup API Access

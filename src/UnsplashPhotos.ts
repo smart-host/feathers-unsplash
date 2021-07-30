@@ -1,18 +1,21 @@
 import { createApi } from "unsplash-js";
-import { Params } from "@feathersjs/feathers";
+import { Params, Application } from "@feathersjs/feathers";
 import { GeneralError, NotImplemented } from "@feathersjs/errors";
 
 interface Options {
   accessKey?: string;
   headers?: HeadersInit;
+  paginate?: { default?: number; max?: number };
 }
 
 export class UnsplashPhotos {
   model;
   options: Options;
+  app: Application | undefined;
 
-  constructor(options: Options) {
+  constructor(options: Options, app?: Application) {
     this.options = options || {};
+    this.app = app;
 
     const { accessKey, headers } = this.options;
     if (!accessKey) {
@@ -99,19 +102,19 @@ export class UnsplashPhotos {
       });
   }
 
-  create(): void {
+  create(): Promise<void> {
     throw new NotImplemented();
   }
 
-  update(): void {
+  update(): Promise<void> {
     throw new NotImplemented();
   }
 
-  patch(): void {
+  patch(): Promise<void> {
     throw new NotImplemented();
   }
 
-  remove(): void {
+  remove(): Promise<void> {
     throw new NotImplemented();
   }
 }

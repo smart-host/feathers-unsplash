@@ -37,6 +37,7 @@
     "@feathersjs/feathers": "^4.5.11",
     "@types/jest": "^26.0.24",
     "@types/node": "^16.4.6",
+    "@types/node-fetch": "^2.5.12",
     "@typescript-eslint/eslint-plugin": "^4.28.5",
     "@typescript-eslint/parser": "^4.28.5",
     "esbuild": "^0.12.16",
