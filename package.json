@@ -7,10 +7,14 @@
   "license": "MIT",
   "keywords": [
     "unsplash",
+    "unsplash-js",
     "photos",
     "feathers",
-    "feathersjs",
-    "unsplash-js"
+    "feathersjs"
+  ],
+  "files": [
+    "dist",
+    "LICENSE"
   ],
   "main": "./dist/tsc/main.js",
   "types": "./dist/tsc/main.d.ts",
