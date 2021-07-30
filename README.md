@@ -2,6 +2,8 @@
 
 > FeathersJS service adapter for querying the Unsplash API
 
+[![npm version](https://badge.fury.io/js/%40smarthost%2Ffeathers-unsplash.svg)](https://badge.fury.io/js/%40smarthost%2Ffeathers-unsplash)
+
 ## About
 
 This project uses [Feathers](http://feathersjs.com). An open source web framework for building modern real-time applications.
