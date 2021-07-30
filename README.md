@@ -3,6 +3,7 @@
 > FeathersJS service adapter for querying the Unsplash API
 
 [![npm version](https://badge.fury.io/js/%40smarthost%2Ffeathers-unsplash.svg)](https://badge.fury.io/js/%40smarthost%2Ffeathers-unsplash)
+[![build](https://github.com/smart-host/feathers-unsplash/actions/workflows/lint-and-test.yml/badge.svg)](https://github.com/smart-host/feathers-unsplash/actions/workflows/lint-and-test.yml)
 
 ## About
 
