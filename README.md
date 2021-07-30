@@ -6,11 +6,22 @@
 
 This project uses [Feathers](http://feathersjs.com). An open source web framework for building modern real-time applications.
 
-Currently only the `UnsplashPhotos` service class is supported.
-
 It is built on top of the official [unsplash-js](https://github.com/unsplash/unsplash-js) package.
 
 This is a fork and update of [marshallswain/feathers-unsplash](https://github.com/marshallswain/feathers-unsplash)
+
+## Supported Services
+
+Below is a list of all exposed services and their implemented methods.
+All can be used like the UnsplashPhotos example given below
+
+- UnsplashPhotos (find, get)
+- UnsplashCollections (find, get)
+- UnsplashCollectionPhotos (find)
+- UnsplashTopics (find, get)
+- UnsplashTopicPhotos (find)
+
+> More documentation coming soon
 
 ## Install
 
@@ -105,19 +116,6 @@ The `get` method can be used in two ways:
 const imageData = await app.service("unsplash-photos").get(id);
 const randomImageData = await app.service("unsplash-photos").get("random");
 ```
-
-## All Services
-
-Below is a list of all exposed services and their implemented methods.
-All can be used like the example given above
-
-- UnsplashPhotos (find, get)
-- UnsplashCollections (find, get)
-- UnsplashCollectionPhotos (find)
-- UnsplashTopics (find, get)
-- UnsplashTopicPhotos (find)
-
-> More documentation coming soon
 
 ## Help
 
