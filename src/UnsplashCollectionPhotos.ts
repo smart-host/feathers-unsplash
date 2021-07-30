@@ -69,23 +69,23 @@ export class UnsplashCollectionPhotos {
       });
   }
 
-  get(): void {
+  get(): Promise<void> {
     throw new NotImplemented();
   }
 
-  create(): void {
+  create(): Promise<void> {
     throw new NotImplemented();
   }
 
-  update(): void {
+  update(): Promise<void> {
     throw new NotImplemented();
   }
 
-  patch(): void {
+  patch(): Promise<void> {
     throw new NotImplemented();
   }
 
-  remove(): void {
+  remove(): Promise<void> {
     throw new NotImplemented();
   }
 }
