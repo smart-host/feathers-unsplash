@@ -99,7 +99,7 @@ module.exports = function (app) {
 
 The `find` method supports searching photos by the following query params:
 
-- `keyword`: the search text
+- `query`: the search text
 - `orientation`: can be either `portrait` or `landscape`. Any other values return an empty list.
 - `collectionIds`: an array of collection ids.
 - also other parameters supported by the unsplash wrapper. [search.getPhotos](https://github.com/unsplash/unsplash-js#searchgetphotosarguments-additionalfetchoptions)
@@ -111,7 +111,7 @@ const response = await app.service('unsplash-photos').find({
   $limit: 10, // this is the default limit
   $skip: 10 // Skipping 10 returns the second page of data.
   query: {
-    keyword: 'food',
+    query: 'food',
     orientation: 'portrait',
   }
 })

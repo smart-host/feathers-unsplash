@@ -13,9 +13,9 @@ export class UnsplashPhotos extends UnsplashService {
     const { $limit, $skip } = params;
     const { ...query } = params.query;
     const {
+      query: keyword,
       orientation,
       collectionIds,
-      keyword,
       contentFilter,
       color,
       orderBy,
@@ -25,9 +25,7 @@ export class UnsplashPhotos extends UnsplashService {
     const limit = $limit || 10;
 
     if (!keyword) {
-      throw new BadRequest(
-        "Must provide keyword as a query parameter. eg ?keyword=value"
-      );
+      throw new BadRequest("'query' parameter is required. eg ?keyword=value");
     }
 
     // Simulate per-page skip using feathers-style per-record skip.

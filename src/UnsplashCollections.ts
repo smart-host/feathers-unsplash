@@ -14,12 +14,10 @@ export class UnsplashCollections extends UnsplashService {
     const skip = $skip || 0;
     const limit = $limit || 10;
     const query = params.query || {};
-    const { keyword } = query;
+    const { query: keyword } = query;
 
     if (!keyword) {
-      throw new BadRequest(
-        "Must provide keyword as a query parameter. eg ?keyword=value"
-      );
+      throw new BadRequest("'query' parameter is required. eg ?query=value");
     }
 
     // Simulate per-page skip using feathers-style per-record skip.
