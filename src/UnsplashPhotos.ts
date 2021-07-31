@@ -26,7 +26,7 @@ export class UnsplashPhotos extends UnsplashService {
 
     if (!keyword) {
       throw new BadRequest(
-        "Must provide keyword as a query parameter when requesting photos. eg ?keyword=value"
+        "Must provide keyword as a query parameter. eg ?keyword=value"
       );
     }
 

@@ -18,7 +18,7 @@ export class UnsplashUserPhotos extends UnsplashService {
 
     if (!username) {
       throw new BadRequest(
-        "Must provide username as a query parameter when requesting photos. eg ?username=value"
+        "Must provide username as a query parameter. eg ?username=value"
       );
     }
 

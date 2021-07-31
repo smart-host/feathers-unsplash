@@ -23,7 +23,7 @@ export class UnsplashCollectionPhotos extends UnsplashService {
 
     if (!collectionId) {
       throw new BadRequest(
-        "Must provide collectionId as a query parameter when requesting photos. eg ?collectionId=value"
+        "Must provide collectionId as a query parameter. eg ?collectionId=value"
       );
     }
 

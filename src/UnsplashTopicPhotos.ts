@@ -18,7 +18,7 @@ export class UnsplashTopicPhotos extends UnsplashService {
 
     if (!topicIdOrSlug) {
       throw new BadRequest(
-        "Must provide topicIdOrSlug as a query parameter when requesting photos. eg ?topicIdOrSlug=value"
+        "Must provide topicIdOrSlug as a query parameter. eg ?topicIdOrSlug=value"
       );
     }
 
