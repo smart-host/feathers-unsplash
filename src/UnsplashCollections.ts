@@ -1,5 +1,5 @@
 import { Params, Application } from "@feathersjs/feathers";
-import { GeneralError, BadRequest } from "@feathersjs/errors";
+import { GeneralError } from "@feathersjs/errors";
 
 import { UnsplashService } from "./common/UnsplashService";
 import { ServiceOptions } from "./common/types";
@@ -16,35 +16,36 @@ export class UnsplashCollections extends UnsplashService {
     const query = params.query || {};
     const { query: keyword } = query;
 
-    if (!keyword) {
-      throw new BadRequest("'query' parameter is required. eg ?query=value");
-    }
-
     // Simulate per-page skip using feathers-style per-record skip.
     // This means skip accuracy is only every $limit number of records.
     const adjustedSkip = Math.floor(skip / limit) + 1;
 
-    return await this.model.search
-      .getCollections({
-        perPage: limit,
-        page: adjustedSkip,
-        query: keyword,
-      })
-      .then(({ type, response, errors, status }) => {
-        if (type === "error") {
-          throw new GeneralError("UnsplashCollections error", {
-            errors,
-            status,
-            type,
-          });
-        }
-        return {
-          limit: response?.results?.length || 0,
-          skip,
-          total: response?.total || 0,
-          data: response?.results || [],
-        };
-      });
+    const request = keyword
+      ? this.model.search.getCollections({
+          perPage: limit,
+          page: adjustedSkip,
+          query: keyword,
+        })
+      : this.model.collections.list({
+          perPage: limit,
+          page: adjustedSkip,
+        });
+
+    return await request.then(({ type, response, errors, status }) => {
+      if (type === "error") {
+        throw new GeneralError("UnsplashCollections error", {
+          errors,
+          status,
+          type,
+        });
+      }
+      return {
+        limit: response?.results?.length || 0,
+        skip,
+        total: response?.total || 0,
+        data: response?.results || [],
+      };
+    });
   }
 
   fetchRelatedCollections(id: string): Promise<unknown> {
