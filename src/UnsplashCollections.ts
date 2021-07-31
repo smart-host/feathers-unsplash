@@ -1,8 +1,8 @@
 import { Params, Application } from "@feathersjs/feathers";
 import { GeneralError, BadRequest } from "@feathersjs/errors";
 
-import { UnsplashService } from "./UnsplashService";
-import { ServiceOptions } from "./types";
+import { UnsplashService } from "./common/UnsplashService";
+import { ServiceOptions } from "./common/types";
 
 export class UnsplashCollections extends UnsplashService {
   constructor(options: ServiceOptions, app?: Application) {
