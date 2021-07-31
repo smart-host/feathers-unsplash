@@ -1,10 +1,10 @@
-import { Params, Application } from "@feathersjs/feathers";
+import { Application, Params } from "@feathersjs/feathers";
 import { GeneralError, BadRequest } from "@feathersjs/errors";
 
 import { UnsplashService } from "./UnsplashService";
 import { ServiceOptions } from "./types";
 
-export class UnsplashTopicPhotos extends UnsplashService {
+export class UnsplashUsers extends UnsplashService {
   constructor(options: ServiceOptions, app?: Application) {
     super(options, app);
   }
@@ -14,11 +14,11 @@ export class UnsplashTopicPhotos extends UnsplashService {
     const skip = $skip || 0;
     const limit = $limit || 10;
     const query = params.query || {};
-    const { topicIdOrSlug, orderBy, orientation } = query;
+    const { keyword } = query;
 
-    if (!topicIdOrSlug) {
+    if (!keyword) {
       throw new BadRequest(
-        "Must provide topicIdOrSlug as a query parameter when requesting photos. eg ?topicIdOrSlug=value"
+        "Must provide keyword as a query parameter when requesting photos. eg ?keyword=value"
       );
     }
 
@@ -26,13 +26,11 @@ export class UnsplashTopicPhotos extends UnsplashService {
     // This means skip accuracy is only every $limit number of records.
     const adjustedSkip = Math.floor(skip / limit) + 1;
 
-    return await this.model.topics
-      .getPhotos({
+    return await this.model.search
+      .getUsers({
         perPage: limit,
         page: adjustedSkip,
-        topicIdOrSlug,
-        orderBy,
-        orientation,
+        query: keyword,
       })
       .then(({ type, response, errors, status }) => {
         if (type === "error") {
@@ -48,6 +46,22 @@ export class UnsplashTopicPhotos extends UnsplashService {
           total: response?.total || 0,
           data: response?.results || [],
         };
+      });
+  }
+
+  async get(id: string): Promise<unknown> {
+    return this.model.users
+      .get({ username: id })
+      .then(async ({ type, errors, response, status }) => {
+        if (type === "error") {
+          throw new GeneralError(this.errorLabel, {
+            errors,
+            status,
+            type,
+          });
+        }
+
+        return response;
       });
   }
 }

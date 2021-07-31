@@ -15,7 +15,7 @@ export class UnsplashCollectionPhotos extends UnsplashService {
     const limit = $limit || 10;
     const { ...query } = params.query;
 
-    const { id: collectionId, orderBy, orientation } = query;
+    const { collectionId, orderBy, orientation } = query;
 
     // Simulate per-page skip using feathers-style per-record skip.
     // This means skip accuracy is only every $limit number of records.
@@ -23,7 +23,7 @@ export class UnsplashCollectionPhotos extends UnsplashService {
 
     if (!collectionId) {
       throw new BadRequest(
-        "Must provide collection id as a query parameter when requesting photos. eg ?id=3737"
+        "Must provide collectionId as a query parameter when requesting photos. eg ?collectionId=value"
       );
     }
 

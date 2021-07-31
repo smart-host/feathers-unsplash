@@ -1,5 +1,5 @@
 import { Params, Application } from "@feathersjs/feathers";
-import { GeneralError } from "@feathersjs/errors";
+import { GeneralError, BadRequest } from "@feathersjs/errors";
 
 import { UnsplashService } from "./UnsplashService";
 import { ServiceOptions } from "./types";
@@ -13,15 +13,24 @@ export class UnsplashCollections extends UnsplashService {
     const { $limit, $skip } = params;
     const skip = $skip || 0;
     const limit = $limit || 10;
+    const query = params.query || {};
+    const { keyword } = query;
+
+    if (!keyword) {
+      throw new BadRequest(
+        "Must provide keyword as a query parameter when requesting photos. eg ?keyword=value"
+      );
+    }
 
     // Simulate per-page skip using feathers-style per-record skip.
     // This means skip accuracy is only every $limit number of records.
     const adjustedSkip = Math.floor(skip / limit) + 1;
 
-    return await this.model.collections
-      .list({
+    return await this.model.search
+      .getCollections({
         perPage: limit,
         page: adjustedSkip,
+        query: keyword,
       })
       .then(({ type, response, errors, status }) => {
         if (type === "error") {

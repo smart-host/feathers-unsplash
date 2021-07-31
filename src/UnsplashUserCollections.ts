@@ -4,7 +4,7 @@ import { GeneralError, BadRequest } from "@feathersjs/errors";
 import { UnsplashService } from "./UnsplashService";
 import { ServiceOptions } from "./types";
 
-export class UnsplashTopicPhotos extends UnsplashService {
+export class UnsplashUserCollections extends UnsplashService {
   constructor(options: ServiceOptions, app?: Application) {
     super(options, app);
   }
@@ -14,11 +14,11 @@ export class UnsplashTopicPhotos extends UnsplashService {
     const skip = $skip || 0;
     const limit = $limit || 10;
     const query = params.query || {};
-    const { topicIdOrSlug, orderBy, orientation } = query;
+    const { username } = query;
 
-    if (!topicIdOrSlug) {
+    if (!username) {
       throw new BadRequest(
-        "Must provide topicIdOrSlug as a query parameter when requesting photos. eg ?topicIdOrSlug=value"
+        "Must provide username as a query parameter when requesting photos. eg ?username=value"
       );
     }
 
@@ -26,13 +26,11 @@ export class UnsplashTopicPhotos extends UnsplashService {
     // This means skip accuracy is only every $limit number of records.
     const adjustedSkip = Math.floor(skip / limit) + 1;
 
-    return await this.model.topics
-      .getPhotos({
+    return await this.model.users
+      .getCollections({
         perPage: limit,
         page: adjustedSkip,
-        topicIdOrSlug,
-        orderBy,
-        orientation,
+        username,
       })
       .then(({ type, response, errors, status }) => {
         if (type === "error") {

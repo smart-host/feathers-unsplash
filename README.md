@@ -23,6 +23,10 @@ All can be used like the UnsplashPhotos example given below
 - UnsplashCollectionPhotos (find)
 - UnsplashTopics (find, get)
 - UnsplashTopicPhotos (find)
+- UnsplashUsers (find, get)
+- UnsplashUserPhotos (find)
+- UnsplashUserCollections (find)
+- UnsplashUserLikes (find)
 
 > More documentation coming soon
 
