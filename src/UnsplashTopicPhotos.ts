@@ -36,7 +36,7 @@ export class UnsplashTopicPhotos extends UnsplashService {
       })
       .then(({ type, response, errors, status }) => {
         if (type === "error") {
-          throw new GeneralError("UnsplashTopicPhotos error", {
+          throw new GeneralError(this.errorLabel, {
             errors,
             status,
             type,

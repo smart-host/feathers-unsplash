@@ -60,7 +60,7 @@ export class UnsplashCollections extends UnsplashService {
       .get({ collectionId: id })
       .then(async ({ type, errors, response, status }) => {
         if (type === "error") {
-          throw new GeneralError("UnsplashCollections error", {
+          throw new GeneralError(this.errorLabel, {
             errors,
             status,
             type,

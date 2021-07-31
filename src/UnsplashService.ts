@@ -10,6 +10,7 @@ export class UnsplashService {
   model;
   options: ServiceOptions;
   app: Application | undefined;
+  errorLabel = "UnsplashService error";
 
   constructor(options: ServiceOptions, app?: Application) {
     this.options = options || {};

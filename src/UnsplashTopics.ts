@@ -31,7 +31,7 @@ export class UnsplashTopics extends UnsplashService {
       })
       .then(({ type, response, errors, status }) => {
         if (type === "error") {
-          throw new GeneralError("UnsplashTopics error", {
+          throw new GeneralError(this.errorLabel, {
             errors,
             status,
             type,
@@ -51,7 +51,7 @@ export class UnsplashTopics extends UnsplashService {
       .get({ topicIdOrSlug: id })
       .then(async ({ type, errors, response, status }) => {
         if (type === "error") {
-          throw new GeneralError("UnsplashTopics error", {
+          throw new GeneralError(this.errorLabel, {
             errors,
             status,
             type,

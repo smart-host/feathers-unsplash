@@ -42,7 +42,7 @@ export class UnsplashPhotos extends UnsplashService {
       })
       .then(({ type, response, errors, status }) => {
         if (type === "error") {
-          throw new GeneralError("UnsplashPhotos error", {
+          throw new GeneralError(this.errorLabel, {
             errors,
             status,
             type,
@@ -75,7 +75,7 @@ export class UnsplashPhotos extends UnsplashService {
       .get({ photoId: id })
       .then(({ type, errors, response, status }) => {
         if (type === "error") {
-          throw new GeneralError("UnsplashPhotos error", {
+          throw new GeneralError(this.errorLabel, {
             errors,
             status,
             type,
