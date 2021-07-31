@@ -1,29 +1,12 @@
-import { createApi } from "unsplash-js";
 import { Params, Application } from "@feathersjs/feathers";
-import { GeneralError, NotImplemented, BadRequest } from "@feathersjs/errors";
+import { GeneralError, BadRequest } from "@feathersjs/errors";
 
-interface Options {
-  accessKey?: string;
-  headers?: HeadersInit;
-  paginate?: { default?: number; max?: number };
-}
+import { UnsplashService } from "./UnsplashService";
+import { ServiceOptions } from "./types";
 
-export class UnsplashTopicPhotos {
-  model;
-  options: Options;
-  app: Application | undefined;
-
-  constructor(options: Options, app?: Application) {
-    this.options = options || {};
-    this.app = app;
-
-    const { accessKey, headers } = this.options;
-    if (!accessKey) {
-      throw new Error(
-        "You must provide an Unsplash `accessKey` to any Unsplash service"
-      );
-    }
-    this.model = createApi({ accessKey, headers });
+export class UnsplashTopicPhotos extends UnsplashService {
+  constructor(options: ServiceOptions, app?: Application) {
+    super(options, app);
   }
 
   async find(params: Params): Promise<unknown> {
@@ -66,25 +49,5 @@ export class UnsplashTopicPhotos {
           data: response?.results || [],
         };
       });
-  }
-
-  get(): Promise<void> {
-    throw new NotImplemented();
-  }
-
-  create(): Promise<void> {
-    throw new NotImplemented();
-  }
-
-  update(): Promise<void> {
-    throw new NotImplemented();
-  }
-
-  patch(): Promise<void> {
-    throw new NotImplemented();
-  }
-
-  remove(): Promise<void> {
-    throw new NotImplemented();
   }
 }
