@@ -33,7 +33,7 @@ export class UnsplashCollections extends UnsplashService {
 
     return await request.then(({ type, response, errors, status }) => {
       if (type === "error") {
-        throw new GeneralError("UnsplashCollections error", {
+        throw new GeneralError(this.errorLabel, {
           errors,
           status,
           type,

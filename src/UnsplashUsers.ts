@@ -17,7 +17,7 @@ export class UnsplashUsers extends UnsplashService {
     const { query: keyword } = query;
 
     if (!keyword) {
-      throw new BadRequest("'query' parameter is required. eg ?keyword=value");
+      throw new BadRequest("'query' parameter is required. eg ?query=value");
     }
 
     // Simulate per-page skip using feathers-style per-record skip.

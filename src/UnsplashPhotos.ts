@@ -25,7 +25,7 @@ export class UnsplashPhotos extends UnsplashService {
     const limit = $limit || 10;
 
     if (!keyword) {
-      throw new BadRequest("'query' parameter is required. eg ?keyword=value");
+      throw new BadRequest("'query' parameter is required. eg ?query=value");
     }
 
     // Simulate per-page skip using feathers-style per-record skip.
