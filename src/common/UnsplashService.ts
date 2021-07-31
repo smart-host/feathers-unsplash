@@ -25,17 +25,18 @@ export class UnsplashService {
     this.model = createApi({ accessKey, headers });
   }
 
-  find(params: Params): Promise<unknown> {
+  find(params?: Params): Promise<unknown> {
     noop(params);
     throw new NotImplemented();
   }
 
-  get(id: string, params: Params): Promise<unknown> {
+  get(id: string, params?: Params): Promise<unknown> {
     noop(id, params);
     throw new NotImplemented();
   }
 
-  create(): Promise<void> {
+  create(data: unknown, params?: Params): Promise<unknown> {
+    noop(data, params);
     throw new NotImplemented();
   }
 
