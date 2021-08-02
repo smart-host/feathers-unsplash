@@ -3,6 +3,7 @@ import { GeneralError, BadRequest } from "@feathersjs/errors";
 
 import { UnsplashService } from "./common/UnsplashService";
 import { ServiceOptions } from "./common/types";
+import { safeParseInt } from "./common/safeParseInt";
 
 export class UnsplashUserCollections extends UnsplashService {
   constructor(options: ServiceOptions, app?: Application) {
@@ -10,11 +11,10 @@ export class UnsplashUserCollections extends UnsplashService {
   }
 
   async find(params: Params): Promise<unknown> {
-    const { $limit, $skip } = params;
-    const skip = $skip || 0;
-    const limit = $limit || 10;
     const query = params.query || {};
-    const { username } = query;
+    const { $limit, $skip, username } = query;
+    const skip = safeParseInt($skip) || 0;
+    const limit = safeParseInt($limit) || 10;
 
     if (!username) {
       throw new BadRequest(

@@ -3,6 +3,7 @@ import { GeneralError, BadRequest } from "@feathersjs/errors";
 
 import { UnsplashService } from "./common/UnsplashService";
 import { ServiceOptions } from "./common/types";
+import { safeParseInt } from "./common/safeParseInt";
 
 export class UnsplashCollectionPhotos extends UnsplashService {
   constructor(options: ServiceOptions, app?: Application) {
@@ -10,12 +11,11 @@ export class UnsplashCollectionPhotos extends UnsplashService {
   }
 
   async find(params: Params): Promise<unknown> {
-    const { $limit, $skip } = params;
-    const skip = $skip || 0;
-    const limit = $limit || 10;
     const { ...query } = params.query;
 
-    const { collectionId, orderBy, orientation } = query;
+    const { $limit, $skip, collectionId, orderBy, orientation } = query;
+    const skip = safeParseInt($skip) || 0;
+    const limit = safeParseInt($limit) || 10;
 
     // Simulate per-page skip using feathers-style per-record skip.
     // This means skip accuracy is only every $limit number of records.

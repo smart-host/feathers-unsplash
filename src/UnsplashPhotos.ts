@@ -3,6 +3,7 @@ import { GeneralError, BadRequest } from "@feathersjs/errors";
 
 import { UnsplashService } from "./common/UnsplashService";
 import { ServiceOptions } from "./common/types";
+import { safeParseInt } from "./common/safeParseInt";
 
 export class UnsplashPhotos extends UnsplashService {
   constructor(options: ServiceOptions, app?: Application) {
@@ -10,9 +11,10 @@ export class UnsplashPhotos extends UnsplashService {
   }
 
   async find(params: Params): Promise<unknown> {
-    const { $limit, $skip } = params;
     const { ...query } = params.query;
     const {
+      $limit,
+      $skip,
       query: keyword,
       orientation,
       collectionIds,
@@ -21,8 +23,8 @@ export class UnsplashPhotos extends UnsplashService {
       orderBy,
       lang,
     } = query;
-    const skip = $skip || 0;
-    const limit = $limit || 10;
+    const skip = safeParseInt($skip) || 0;
+    const limit = safeParseInt($limit) || 10;
 
     if (!keyword) {
       throw new BadRequest("'query' parameter is required. eg ?query=value");

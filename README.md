@@ -108,9 +108,9 @@ It also supports familiar pagination attributes: `$limit` and `$skip`. Note that
 
 ```js
 const response = await app.service('unsplash-photos').find({
-  $limit: 10, // this is the default limit
-  $skip: 10 // Skipping 10 returns the second page of data.
   query: {
+    $limit: 10, // this is the default limit
+    $skip: 10 // Skipping 10 returns the second page of data.
     query: 'food',
     orientation: 'portrait',
   }
