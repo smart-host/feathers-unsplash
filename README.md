@@ -19,7 +19,7 @@ Below is a list of all exposed services and their implemented methods.
 All can be used like the UnsplashPhotos example given below
 
 - UnsplashPhotos (find, get)
-- UnsplashPhotoTrack (create)
+- UnsplashTrackPhotos (create)
 - UnsplashCollections (find, get)
 - UnsplashCollectionPhotos (find)
 - UnsplashTopics (find, get)

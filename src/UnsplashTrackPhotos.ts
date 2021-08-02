@@ -8,7 +8,7 @@ interface Data {
   downloadLocation: string;
 }
 
-export class UnsplashPhotoTrack extends UnsplashService {
+export class UnsplashTrackPhotos extends UnsplashService {
   constructor(options: ServiceOptions, app?: Application) {
     super(options, app);
   }

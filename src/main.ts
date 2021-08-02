@@ -1,5 +1,5 @@
 export * from "./UnsplashPhotos";
-export * from "./UnsplashPhotoTrack";
+export * from "./UnsplashTrackPhotos";
 export * from "./UnsplashCollections";
 export * from "./UnsplashCollectionPhotos";
 export * from "./UnsplashTopics";
