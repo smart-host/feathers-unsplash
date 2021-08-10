@@ -1,6 +1,6 @@
 {
   "name": "@smarthost/feathers-unsplash",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Feathersjs wrapper for querying the unsplash api",
   "author": "Smart Host <it@smart-host.com>",
   "repository": "https://github.com/smart-host/feathers-unsplash",
