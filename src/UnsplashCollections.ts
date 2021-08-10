@@ -64,6 +64,8 @@ export class UnsplashCollections extends UnsplashService {
     const query = params.query || {};
     const { related } = query;
 
+    const shouldJoinRelated = related?.toLowerCase() === "true";
+
     return this.model.collections
       .get({ collectionId: id })
       .then(async ({ type, errors, response, status }) => {
@@ -75,7 +77,7 @@ export class UnsplashCollections extends UnsplashService {
           });
         }
 
-        if (!related) {
+        if (!shouldJoinRelated) {
           return response;
         }
 
