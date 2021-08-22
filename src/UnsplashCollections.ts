@@ -12,9 +12,16 @@ export class UnsplashCollections extends UnsplashService {
 
   async find(params: Params): Promise<unknown> {
     const query = params.query || {};
-    const { $limit, $skip, query: keyword } = query;
+    const {
+      $limit,
+      $skip,
+      query: searchQuery,
+      keyword: searchQueryAlias,
+    } = query;
     const skip = safeParseInt($skip) || 0;
     const limit = safeParseInt($limit) || 10;
+
+    const keyword = searchQueryAlias || searchQuery;
 
     // Simulate per-page skip using feathers-style per-record skip.
     // This means skip accuracy is only every $limit number of records.

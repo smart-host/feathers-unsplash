@@ -15,7 +15,8 @@ export class UnsplashPhotos extends UnsplashService {
     const {
       $limit,
       $skip,
-      query: keyword,
+      query: searchQuery,
+      keyword: searchQueryAlias,
       orientation,
       collectionIds,
       contentFilter,
@@ -25,6 +26,7 @@ export class UnsplashPhotos extends UnsplashService {
     } = query;
     const skip = safeParseInt($skip) || 0;
     const limit = safeParseInt($limit) || 10;
+    const keyword = searchQueryAlias || searchQuery;
 
     // Simulate per-page skip using feathers-style per-record skip.
     // This means skip accuracy is only every $limit number of records.
